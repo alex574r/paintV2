@@ -20,17 +20,4 @@
 ##🎨 Ejecución
 -Se debe Ejecutar desde la carpeta proyecto el archivo: 'proyectoPrincipal'
 
-
-
-
-
-
-
-
-
-
-
-
-
-   ```bash
-   git clone https://github.com/tu-usuario/proyecto-graficacion.git
+![PawArt](/src/icons/paintApp/icon.png)
