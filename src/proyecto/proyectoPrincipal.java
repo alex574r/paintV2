@@ -7,6 +7,7 @@ package proyecto;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import paint.CustomDrawPanel;
@@ -60,6 +61,7 @@ public class proyectoPrincipal extends javax.swing.JFrame {
         paintPrueba = new javax.swing.JMenuItem();
         creditos = new javax.swing.JMenu();
         acercaDeOp = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -130,6 +132,14 @@ public class proyectoPrincipal extends javax.swing.JFrame {
         });
         creditos.add(acercaDeOp);
 
+        jMenuItem1.setText("Comandos");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        creditos.add(jMenuItem1);
+
         BarProyectos.add(creditos);
 
         setJMenuBar(BarProyectos);
@@ -172,17 +182,26 @@ public class proyectoPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_paintFlowActionPerformed
 
     private void PaintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PaintActionPerformed
-        setTitle("Paint");
-        scrollPrincipal.setViewportView(PanelPaint);
-        PanelPaint.revalidate();
-        PanelPaint.repaint();
-    }//GEN-LAST:event_PaintActionPerformed
-
-    private void paintPruebaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paintPruebaActionPerformed
         setTitle("Paint V2");
         scrollPrincipal.setViewportView(paintP);
         paintP.revalidate();
         paintP.repaint();
+
+        /*setTitle("Paint");
+        scrollPrincipal.setViewportView(PanelPaint);
+        PanelPaint.revalidate();
+        PanelPaint.repaint();*/
+    }//GEN-LAST:event_PaintActionPerformed
+
+    private void paintPruebaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paintPruebaActionPerformed
+        setTitle("Paint");
+        scrollPrincipal.setViewportView(PanelPaint);
+        PanelPaint.revalidate();
+        PanelPaint.repaint();
+        /*setTitle("Paint V2");
+        scrollPrincipal.setViewportView(paintP);
+        paintP.revalidate();
+        paintP.repaint();*/
     }//GEN-LAST:event_paintPruebaActionPerformed
 
     private void acercaDeOpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acercaDeOpActionPerformed
@@ -191,6 +210,43 @@ public class proyectoPrincipal extends javax.swing.JFrame {
         creditosP.revalidate();
         creditosP.repaint();
     }//GEN-LAST:event_acercaDeOpActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        JOptionPane.showMessageDialog(null, "Comandos de Figuras (CTRL + Número)\n"
+                + "CTRL+1 - Círculo\n"
+                + "CTRL+2 - Rectángulo\n"
+                + "CTRL+3 - Elipse\n"
+                + "CTRL+4 - Línea discontinua\n"
+                + "CTRL+5 - Arco\n"
+                + "CTRL+6 - Triángulo\n"
+                + "CTRL+7 - Estrella\n"
+                + "CTRL+8 - Curva cuadrática\n"
+                + "CTRL+9 - Curva cúbica\n"
+                + "CTRL+0 - Óvalo (Nota:  las figuras Electronicas no tienen atajo directo)\n"
+                + "Herramientas de Dibujo y Selección\n"
+                + "CTRL+S - Modo Selección\n"
+                + "CTRL+M - Modo Mover\n"
+                + "CTRL+R - Modo Rotar\n"
+                + "CTRL+E - Modo Escalar\n"
+                + "CTRL+P - Modo Pincel\n"
+                + "CTRL+G - Modo Goma\n"
+                + "Operaciones con Figuras\n"
+                + "CTRL+C - Copiar figuras seleccionadas\n"
+                + "CTRL+V - Pegar figuras copiadas\n"
+                + "CTRL+D - Borrar figuras seleccionadas \n"
+                + "CTRL+Z - Deshacer (borrar última figura)\n"
+                + "CTRL+F - Traer al frente\n"
+                + "CTRL+B - Enviar atrás\n"
+                + "CTRL+J - Agrupar figuras\n"
+                + "CTRL+U - Desagrupar figuras\n"
+                + "CTRL+L - Fusionar figuras seleccionadas\n"
+                + "Funciones Adicionales (No tienen atajos de teclado)\n"
+                + "Zoom con Rueda del Ratón + CTRL - Acercar/Alejar\n"
+                + "Clic Medio + Arrastrar - Mover el lienzo\n"
+                + "Guardar Dibujo - Desde el menú o interfaz\n"
+                + "Cargar Imagen como Relleno - Desde el menú o interfaz\n"
+                + "Aplicar Texturas - Desde el menú o interfaz");
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -241,6 +297,7 @@ public class proyectoPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem Paint;
     private javax.swing.JMenuItem acercaDeOp;
     private javax.swing.JMenu creditos;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem paintFlow;
     private javax.swing.JMenuItem paintPrueba;
     private javax.swing.JScrollPane scrollPrincipal;

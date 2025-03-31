@@ -4,6 +4,7 @@
  */
 package paint;
 
+import OpcionesEmergentes.mensajesE;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -26,6 +27,7 @@ public class paint extends javax.swing.JPanel {
     private CustomDrawPanel drawPanel;  // Declara el panel de dibujo personalizado
     //private JPanel floatingPanel; // Panel flotante
     funciones funcion = new funciones();
+    mensajesE mensaje = new mensajesE();
 
     public paint() {
 
@@ -49,6 +51,14 @@ public class paint extends javax.swing.JPanel {
     private void setupPanels() {
         funcion.remover_fondo_panel(floatingPanel);
         drawPanel.setSeleccionMultiple(true);
+        ShapesOpciones.setEnabled(false);
+        drawPanel.setRelleno(true);
+        drawPanel.setContorno(true);
+
+    }
+
+    private void valores_Default() {
+        drawPanel.setModoPincel(false);
     }
 
     /**
@@ -85,9 +95,29 @@ public class paint extends javax.swing.JPanel {
         popMenuEslilo = new javax.swing.JPopupMenu();
         DiseñoLibreOp = new javax.swing.JMenuItem();
         SeleccionOp = new javax.swing.JMenuItem();
+        popMenuConfiguracionSP = new javax.swing.JPopupMenu();
+        RellenoOP = new javax.swing.JMenuItem();
+        TrazoOP = new javax.swing.JMenuItem();
+        popMenuOpcionSelecccion = new javax.swing.JPopupMenu();
+        MoverOP = new javax.swing.JMenuItem();
+        RotarOP = new javax.swing.JMenuItem();
+        EscalarOp = new javax.swing.JMenuItem();
+        FusionarOp = new javax.swing.JMenuItem();
+        BorrarOp = new javax.swing.JMenuItem();
+        CopiarOP = new javax.swing.JMenuItem();
+        PegarOp = new javax.swing.JMenuItem();
+        TraerEnfrenteOp = new javax.swing.JMenuItem();
+        EnviarAtrasOP = new javax.swing.JMenuItem();
+        EliminarOP = new javax.swing.JMenuItem();
+        AgruparOp = new javax.swing.JMenuItem();
+        DesagruparOP = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jLayeredPane1 = new javax.swing.JLayeredPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
         floatingPanel = new javax.swing.JPanel();
+        ShapesOpciones = new javax.swing.JLabel();
+        ModoPincel = new javax.swing.JLabel();
+        ConfiguracionShapes = new javax.swing.JLabel();
         ShapesSeleccionE = new javax.swing.JLabel();
         ShapesSeleccion = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -272,6 +302,113 @@ public class paint extends javax.swing.JPanel {
         });
         popMenuEslilo.add(SeleccionOp);
 
+        RellenoOP.setText("Relleno");
+        RellenoOP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RellenoOPActionPerformed(evt);
+            }
+        });
+        popMenuConfiguracionSP.add(RellenoOP);
+
+        TrazoOP.setText("Trazo");
+        popMenuConfiguracionSP.add(TrazoOP);
+
+        MoverOP.setText("Mover");
+        MoverOP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MoverOPActionPerformed(evt);
+            }
+        });
+        popMenuOpcionSelecccion.add(MoverOP);
+
+        RotarOP.setText("Rotar");
+        RotarOP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RotarOPActionPerformed(evt);
+            }
+        });
+        popMenuOpcionSelecccion.add(RotarOP);
+
+        EscalarOp.setText("Escalar");
+        EscalarOp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EscalarOpActionPerformed(evt);
+            }
+        });
+        popMenuOpcionSelecccion.add(EscalarOp);
+
+        FusionarOp.setText("Fusionar");
+        FusionarOp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FusionarOpActionPerformed(evt);
+            }
+        });
+        popMenuOpcionSelecccion.add(FusionarOp);
+
+        BorrarOp.setText("Borrar");
+        BorrarOp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BorrarOpActionPerformed(evt);
+            }
+        });
+        popMenuOpcionSelecccion.add(BorrarOp);
+
+        CopiarOP.setText("Copiar");
+        CopiarOP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CopiarOPActionPerformed(evt);
+            }
+        });
+        popMenuOpcionSelecccion.add(CopiarOP);
+
+        PegarOp.setText("Pegar");
+        PegarOp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PegarOpActionPerformed(evt);
+            }
+        });
+        popMenuOpcionSelecccion.add(PegarOp);
+
+        TraerEnfrenteOp.setText("Traer En Frente");
+        TraerEnfrenteOp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TraerEnfrenteOpActionPerformed(evt);
+            }
+        });
+        popMenuOpcionSelecccion.add(TraerEnfrenteOp);
+
+        EnviarAtrasOP.setText("Enviar Atras");
+        EnviarAtrasOP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EnviarAtrasOPActionPerformed(evt);
+            }
+        });
+        popMenuOpcionSelecccion.add(EnviarAtrasOP);
+
+        EliminarOP.setText("Eliminar Objeto");
+        EliminarOP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarOPActionPerformed(evt);
+            }
+        });
+        popMenuOpcionSelecccion.add(EliminarOP);
+
+        AgruparOp.setText("Agrupar");
+        AgruparOp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AgruparOpActionPerformed(evt);
+            }
+        });
+        popMenuOpcionSelecccion.add(AgruparOp);
+
+        DesagruparOP.setText("Desagrupar");
+        DesagruparOP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DesagruparOPActionPerformed(evt);
+            }
+        });
+        popMenuOpcionSelecccion.add(DesagruparOP);
+
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 255));
@@ -291,8 +428,35 @@ public class paint extends javax.swing.JPanel {
 
         jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jLayeredPane1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 0, 290, 700));
+
         floatingPanel.setBackground(new java.awt.Color(255, 51, 51));
         floatingPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        ShapesOpciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/paintApp/iconoOpcionesSeleccion.png"))); // NOI18N
+        ShapesOpciones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ShapesOpcionesMouseClicked(evt);
+            }
+        });
+        floatingPanel.add(ShapesOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 20, 64, 32));
+
+        ModoPincel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/paintApp/iconDibujo.png"))); // NOI18N
+        ModoPincel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ModoPincelMouseClicked(evt);
+            }
+        });
+        floatingPanel.add(ModoPincel, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, 64, 32));
+
+        ConfiguracionShapes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/paintApp/inconConfiguracion.png"))); // NOI18N
+        ConfiguracionShapes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ConfiguracionShapesMouseClicked(evt);
+            }
+        });
+        floatingPanel.add(ConfiguracionShapes, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, 64, 32));
 
         ShapesSeleccionE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/paintApp/iconElectronics.png"))); // NOI18N
         ShapesSeleccionE.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -300,7 +464,7 @@ public class paint extends javax.swing.JPanel {
                 ShapesSeleccionEMouseClicked(evt);
             }
         });
-        floatingPanel.add(ShapesSeleccionE, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, 64, 32));
+        floatingPanel.add(ShapesSeleccionE, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 64, 32));
 
         ShapesSeleccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/paintApp/iconShapes.png"))); // NOI18N
         ShapesSeleccion.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -308,7 +472,7 @@ public class paint extends javax.swing.JPanel {
                 ShapesSeleccionMouseClicked(evt);
             }
         });
-        floatingPanel.add(ShapesSeleccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 64, 32));
+        floatingPanel.add(ShapesSeleccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 64, 32));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/paintApp/iconDiseñoLibre.png"))); // NOI18N
         jLabel2.setToolTipText("Diseño Libre");
@@ -320,6 +484,11 @@ public class paint extends javax.swing.JPanel {
         floatingPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 64, 32));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/paintApp/barraNavegacion.png"))); // NOI18N
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
         floatingPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 70));
 
         jLayeredPane1.setLayer(floatingPanel, javax.swing.JLayeredPane.PALETTE_LAYER);
@@ -329,7 +498,7 @@ public class paint extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ShapesSeleccionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ShapesSeleccionMouseClicked
-
+        valores_Default();
         popMenuSahpe.show(ShapesSeleccion, evt.getX(), evt.getY());
     }//GEN-LAST:event_ShapesSeleccionMouseClicked
 
@@ -339,6 +508,7 @@ public class paint extends javax.swing.JPanel {
 
     private void ShapesSeleccionEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ShapesSeleccionEMouseClicked
         popMenuShapeElec.show(ShapesSeleccionE, evt.getX(), evt.getY());
+        valores_Default();
     }//GEN-LAST:event_ShapesSeleccionEMouseClicked
 
     private void RecatanguloShapeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RecatanguloShapeActionPerformed
@@ -419,17 +589,21 @@ public class paint extends javax.swing.JPanel {
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         popMenuEslilo.show(jLabel2, evt.getX(), evt.getY());
+        valores_Default();
     }//GEN-LAST:event_jLabel2MouseClicked
 
-    
+
     private void DiseñoLibreOpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DiseñoLibreOpActionPerformed
         boolean modoS = drawPanel.isModoSeleccion();
         if (modoS) {
             jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/paintApp/iconDiseñoLibre.png")));
             jLabel2.setToolTipText("Diseño Libre");
+            drawPanel.setModoPincel(true);
+            ModoPincel.setEnabled(true);
+            ShapesOpciones.setEnabled(false);
             drawPanel.setModoSeleccion(false);
             drawPanel.setModoMover(false);
-        }   
+        }
     }//GEN-LAST:event_DiseñoLibreOpActionPerformed
 
     private void SeleccionOpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionOpActionPerformed
@@ -437,41 +611,141 @@ public class paint extends javax.swing.JPanel {
         if (!modoS) {
             jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/paintApp/iconSelection.png")));
             jLabel2.setToolTipText("Seleccion de Shapes");
+            ModoPincel.setEnabled(false);
             drawPanel.setModoSeleccion(true);
+            ShapesOpciones.setEnabled(true);
         }
     }//GEN-LAST:event_SeleccionOpActionPerformed
 
+    private void ConfiguracionShapesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConfiguracionShapesMouseClicked
+        popMenuConfiguracionSP.show(ConfiguracionShapes, evt.getX(), evt.getY());
+    }//GEN-LAST:event_ConfiguracionShapesMouseClicked
+
+    private void ModoPincelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ModoPincelMouseClicked
+        boolean modoS = drawPanel.isModoSeleccion();
+        if (modoS) {
+            drawPanel.setModoPincel(false);
+            ModoPincel.setEnabled(false);
+        } else {
+            drawPanel.setModoPincel(true);
+            ModoPincel.setEnabled(true);
+        }
+
+    }//GEN-LAST:event_ModoPincelMouseClicked
+
+    private void ShapesOpcionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ShapesOpcionesMouseClicked
+        if (ShapesOpciones.isEnabled()) {
+            popMenuOpcionSelecccion.show(ShapesOpciones, evt.getX(), evt.getY());
+        }
+    }//GEN-LAST:event_ShapesOpcionesMouseClicked
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        //popMenuConfiguracionSP.show(jLabel2, evt.getX(), evt.getY());
+    }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void MoverOPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MoverOPActionPerformed
+        drawPanel.setModoMover(true);
+    }//GEN-LAST:event_MoverOPActionPerformed
+
+    private void RotarOPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RotarOPActionPerformed
+        drawPanel.setModoRotar(true);
+    }//GEN-LAST:event_RotarOPActionPerformed
+
+    private void EscalarOpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EscalarOpActionPerformed
+        drawPanel.setModoEscalar(true);
+    }//GEN-LAST:event_EscalarOpActionPerformed
+
+    private void FusionarOpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FusionarOpActionPerformed
+        drawPanel.fusionarFigurasSeleccionadas();
+    }//GEN-LAST:event_FusionarOpActionPerformed
+
+    private void BorrarOpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarOpActionPerformed
+        drawPanel.setModoGoma(true);
+    }//GEN-LAST:event_BorrarOpActionPerformed
+
+    private void EliminarOPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarOPActionPerformed
+        drawPanel.eliminarFigurasSeleccionadas();
+    }//GEN-LAST:event_EliminarOPActionPerformed
+
+    private void CopiarOPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiarOPActionPerformed
+        drawPanel.copiarFigurasSeleccionadas();
+    }//GEN-LAST:event_CopiarOPActionPerformed
+
+    private void PegarOpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PegarOpActionPerformed
+        drawPanel.pegarFigurasCopiadas();
+    }//GEN-LAST:event_PegarOpActionPerformed
+
+    private void TraerEnfrenteOpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TraerEnfrenteOpActionPerformed
+        drawPanel.traerAlFrente();
+    }//GEN-LAST:event_TraerEnfrenteOpActionPerformed
+
+    private void EnviarAtrasOPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnviarAtrasOPActionPerformed
+        drawPanel.enviarAtras();
+    }//GEN-LAST:event_EnviarAtrasOPActionPerformed
+
+    private void AgruparOpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgruparOpActionPerformed
+        drawPanel.agruparFiguras();
+    }//GEN-LAST:event_AgruparOpActionPerformed
+
+    private void DesagruparOPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DesagruparOPActionPerformed
+        drawPanel.desagruparFiguras();
+    }//GEN-LAST:event_DesagruparOPActionPerformed
+
+    private void RellenoOPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RellenoOPActionPerformed
+        mensaje.RellenoAlert();
+    }//GEN-LAST:event_RellenoOPActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem AgruparOp;
     private javax.swing.JMenuItem ArcoShape;
+    private javax.swing.JMenuItem BorrarOp;
     private javax.swing.JMenuItem CirculoShape;
+    private javax.swing.JLabel ConfiguracionShapes;
+    private javax.swing.JMenuItem CopiarOP;
     private javax.swing.JMenuItem CurvaCShape;
     private javax.swing.JMenuItem CurvaCuadraticaSahpe;
+    private javax.swing.JMenuItem DesagruparOP;
     private javax.swing.JMenuItem DiodoShape;
     private javax.swing.JMenuItem DiseñoLibreOp;
+    private javax.swing.JMenuItem EliminarOP;
     private javax.swing.JMenuItem ElipseShape;
+    private javax.swing.JMenuItem EnviarAtrasOP;
+    private javax.swing.JMenuItem EscalarOp;
     private javax.swing.JMenuItem FuenteACShape;
     private javax.swing.JMenuItem FusibleShape;
+    private javax.swing.JMenuItem FusionarOp;
     private javax.swing.JMenuItem InterruptorShape;
     private javax.swing.JMenuItem LineaSahpe;
     private javax.swing.JMenuItem MicrocontroladorShape;
+    private javax.swing.JLabel ModoPincel;
+    private javax.swing.JMenuItem MoverOP;
     private javax.swing.JMenuItem OvaloShape;
+    private javax.swing.JMenuItem PegarOp;
     private javax.swing.JMenuItem PentagonoShape;
     private javax.swing.JMenuItem PilaShape;
     private javax.swing.JMenuItem RecatanguloShape;
+    private javax.swing.JMenuItem RellenoOP;
     private javax.swing.JMenuItem ResistenciaShape;
+    private javax.swing.JMenuItem RotarOP;
     private javax.swing.JMenuItem SeleccionOp;
+    private javax.swing.JLabel ShapesOpciones;
     private javax.swing.JLabel ShapesSeleccion;
     private javax.swing.JLabel ShapesSeleccionE;
     private javax.swing.JMenuItem TierraShape;
+    private javax.swing.JMenuItem TraerEnfrenteOp;
     private javax.swing.JMenuItem TransformadorShape;
+    private javax.swing.JMenuItem TrazoOP;
     private javax.swing.JMenuItem TrianguloShape;
     private javax.swing.JPanel floatingPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPopupMenu popMenuConfiguracionSP;
     private javax.swing.JPopupMenu popMenuEslilo;
+    private javax.swing.JPopupMenu popMenuOpcionSelecccion;
     private javax.swing.JPopupMenu popMenuSahpe;
     private javax.swing.JPopupMenu popMenuShapeElec;
     private javax.swing.JMenuItem pulsadorShape;
