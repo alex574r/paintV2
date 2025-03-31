@@ -5,11 +5,14 @@
 package proyecto;
 
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import paint.CustomDrawPanel;
 import paint.ShapeSelectorPanel;
+import paint.creditos;
+import paint.paint;
 import paint.prueba;
 import subProyectos.Ex3EllipsesSlider;
 import subProyectos.Hello2D;
@@ -26,6 +29,8 @@ public class proyectoPrincipal extends javax.swing.JFrame {
     JPanel paintFlowP = new PaintFlow();
     JPanel hello2DV2P = new Hello2DV2();
     JPanel Ex3EllipsesSliderP = new Ex3EllipsesSlider();
+    JPanel creditosP = new creditos();
+    JPanel paintP = new paint();
     CustomDrawPanel drawPanel = new CustomDrawPanel();
     ShapeSelectorPanel PanelPaint = new ShapeSelectorPanel(drawPanel);
     prueba prueba = new prueba();
@@ -53,10 +58,12 @@ public class proyectoPrincipal extends javax.swing.JFrame {
         Elipses = new javax.swing.JMenuItem();
         Paint = new javax.swing.JMenuItem();
         paintPrueba = new javax.swing.JMenuItem();
+        creditos = new javax.swing.JMenu();
+        acercaDeOp = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(scrollPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1440, 780));
+        getContentPane().add(scrollPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1400, 780));
 
         MenuSelectorProyectos.setText("Proyectos");
 
@@ -92,6 +99,7 @@ public class proyectoPrincipal extends javax.swing.JFrame {
         });
         MenuSelectorProyectos.add(Elipses);
 
+        Paint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/paintApp/painticon.png"))); // NOI18N
         Paint.setText("Paint");
         Paint.setToolTipText("");
         Paint.addActionListener(new java.awt.event.ActionListener() {
@@ -111,17 +119,32 @@ public class proyectoPrincipal extends javax.swing.JFrame {
 
         BarProyectos.add(MenuSelectorProyectos);
 
+        creditos.setText("acerca de");
+
+        acercaDeOp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/paintApp/iconCredit.png"))); // NOI18N
+        acercaDeOp.setText("Creditos ");
+        acercaDeOp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                acercaDeOpActionPerformed(evt);
+            }
+        });
+        creditos.add(acercaDeOp);
+
+        BarProyectos.add(creditos);
+
         setJMenuBar(BarProyectos);
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void valoresIniciales(){
-        PanelPaint.add(drawPanel);
+    private void valoresIniciales() {
+        //PanelPaint.add(drawPanel);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icons/paintApp/icon.png")));
+
     }
-    
-    
+
+
     private void HelloJava2DActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HelloJava2DActionPerformed
         setTitle("Hola 2d");
         scrollPrincipal.setViewportView(hello2dP);
@@ -156,11 +179,18 @@ public class proyectoPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_PaintActionPerformed
 
     private void paintPruebaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paintPruebaActionPerformed
-        setTitle("Prueba");
-        scrollPrincipal.setViewportView(prueba);
-        prueba.revalidate();
-        prueba.repaint();
+        setTitle("Paint V2");
+        scrollPrincipal.setViewportView(paintP);
+        paintP.revalidate();
+        paintP.repaint();
     }//GEN-LAST:event_paintPruebaActionPerformed
+
+    private void acercaDeOpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acercaDeOpActionPerformed
+        setTitle("Acerca De");
+        scrollPrincipal.setViewportView(creditosP);
+        creditosP.revalidate();
+        creditosP.repaint();
+    }//GEN-LAST:event_acercaDeOpActionPerformed
 
     /**
      * @param args the command line arguments
@@ -209,6 +239,8 @@ public class proyectoPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem HelloJava2D;
     private javax.swing.JMenu MenuSelectorProyectos;
     private javax.swing.JMenuItem Paint;
+    private javax.swing.JMenuItem acercaDeOp;
+    private javax.swing.JMenu creditos;
     private javax.swing.JMenuItem paintFlow;
     private javax.swing.JMenuItem paintPrueba;
     private javax.swing.JScrollPane scrollPrincipal;

@@ -9,7 +9,7 @@ import java.awt.Color;
 import java.awt.Shape;
 import java.awt.Stroke;
 import java.awt.image.BufferedImage;
-
+ 
 public class AtributosDibujo {
 
     private Color colorRelleno;
@@ -17,19 +17,17 @@ public class AtributosDibujo {
     private boolean rellenoActivo;
     private boolean contornoActivo;
     private float anchoContorno = 1.0f; // Valor por defecto
-    ///
+    
     private boolean rellenoDegradado = false;
     private Color colorDegradadoInicio = Color.WHITE;
     private Color colorDegradadoFin = Color.BLUE;
     private int direccionDegradado = 0; // 0=horizontal, 1=vertical, 2=diagonal
-    ////
+    
     private boolean strokePunteado = false;
     private float[] patronPunteado = {10f, 5f}; // {trazo, espacio}
 
     private boolean rellenoImagenActivo = false;
     private transient BufferedImage imagenRelleno;
-    
-    
 
     // Constructor con valores por defecto
     public AtributosDibujo() {
@@ -49,26 +47,6 @@ public class AtributosDibujo {
     }
 
     // Getters y Setters
-    
-    
-    // Getters y Setters
-    public boolean isRellenoImagenActivo() {
-        return rellenoImagenActivo;
-    }
-
-    public void setRellenoImagenActivo(boolean activo) {
-        this.rellenoImagenActivo = activo;
-    }
-
-    public BufferedImage getImagenRelleno() {
-        return imagenRelleno;
-    }
-
-    public void setImagenRelleno(BufferedImage imagen) {
-        this.imagenRelleno = imagen;
-    }
-    
-    
     public Color getColorRelleno() {
         return colorRelleno;
     }
@@ -157,6 +135,22 @@ public class AtributosDibujo {
         this.patronPunteado = patronPunteado;
     }
 
+    public boolean isRellenoImagenActivo() {
+        return rellenoImagenActivo;
+    }
+
+    public void setRellenoImagenActivo(boolean activo) {
+        this.rellenoImagenActivo = activo;
+    }
+
+    public BufferedImage getImagenRelleno() {
+        return imagenRelleno;
+    }
+
+    public void setImagenRelleno(BufferedImage imagen) {
+        this.imagenRelleno = imagen;
+    }
+
     public BasicStroke crearStroke() {
         if (strokePunteado) {
             return new BasicStroke(
@@ -172,14 +166,18 @@ public class AtributosDibujo {
         }
     }
 
-    // Método para copiar los atributos actuales
     public AtributosDibujo copiar() {
-        return new AtributosDibujo(
+        AtributosDibujo copia = new AtributosDibujo(
                 this.colorRelleno,
                 this.colorContorno,
                 this.rellenoActivo,
                 this.contornoActivo
         );
+        copia.setAnchoContorno(this.anchoContorno);
+        copia.setStrokePunteado(this.strokePunteado);
+        copia.setPatronPunteado(this.patronPunteado.clone());
+        copia.setRellenoImagenActivo(this.rellenoImagenActivo);
+        copia.setImagenRelleno(this.imagenRelleno);
+        return copia;
     }
-
 }
