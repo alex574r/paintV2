@@ -4,16 +4,23 @@
  */
 package OpcionesEmergentes;
 
+import paint.CustomDrawPanel;
+
 /**
  *
  * @author alex5
  */
 public class mensajesE {
 
-    public void RellenoAlert() {
-        Relleno mensaje = new Relleno(null, true);
+    public void RellenoAlert(CustomDrawPanel drawPanel) {
+        OpcionesRelleno mensaje = new OpcionesRelleno(drawPanel);
         mensaje.setVisible(true);
     }
 
-   
+    
+    public void ContornoAlert(CustomDrawPanel drawPanel) {
+        OpcionesTrazo mensaje = new OpcionesTrazo(drawPanel);
+        mensaje.setVisible(true);
+    }
+
 }

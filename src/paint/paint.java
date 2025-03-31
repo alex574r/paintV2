@@ -5,17 +5,28 @@
 package paint;
 
 import OpcionesEmergentes.mensajesE;
+import com.formdev.flatlaf.themes.FlatMacDarkLaf;
+import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
+import java.awt.Window;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
+import java.util.prefs.Preferences;
 import javax.swing.BorderFactory;
+import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import recursos.funciones;
 
 /**
@@ -112,8 +123,11 @@ public class paint extends javax.swing.JPanel {
         AgruparOp = new javax.swing.JMenuItem();
         DesagruparOP = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jLayeredPane1 = new javax.swing.JLayeredPane();
-        jScrollPane1 = new javax.swing.JScrollPane();
         floatingPanel = new javax.swing.JPanel();
         ShapesOpciones = new javax.swing.JLabel();
         ModoPincel = new javax.swing.JLabel();
@@ -311,6 +325,11 @@ public class paint extends javax.swing.JPanel {
         popMenuConfiguracionSP.add(RellenoOP);
 
         TrazoOP.setText("Trazo");
+        TrazoOP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TrazoOPActionPerformed(evt);
+            }
+        });
         popMenuConfiguracionSP.add(TrazoOP);
 
         MoverOP.setText("Mover");
@@ -413,23 +432,59 @@ public class paint extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 255));
 
+        jButton1.setText("Reset Zoom");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Guardar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Modo Visua Beta");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Modo Claro", "Modo Oscuro" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1390, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(560, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(164, 164, 164)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 70, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(27, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)
+                    .addComponent(jLabel3)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17))
         );
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1390, 70));
 
         jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
-        jLayeredPane1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 0, 290, 700));
 
         floatingPanel.setBackground(new java.awt.Color(255, 51, 51));
         floatingPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -497,6 +552,51 @@ public class paint extends javax.swing.JPanel {
         add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 1390, 700));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void guardarImagen(ActionEvent e) {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Guardar dibujo como imagen");
+        fileChooser.setFileFilter(new FileNameExtensionFilter("Imágenes PNG", "png"));
+        fileChooser.setFileFilter(new FileNameExtensionFilter("Imágenes JPEG", "jpg", "jpeg"));
+        fileChooser.setAcceptAllFileFilterUsed(false);
+
+        int userSelection = fileChooser.showSaveDialog(this);
+
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+            File archivo = fileChooser.getSelectedFile();
+            String formato = "png";
+
+            if (fileChooser.getFileFilter().getDescription().contains("JPEG")) {
+                formato = "jpg";
+                if (!archivo.getName().toLowerCase().endsWith(".jpg") &&
+                        !archivo.getName().toLowerCase().endsWith(".jpeg")) {
+                    archivo = new File(archivo.getAbsolutePath() + ".jpg");
+                }
+            } else {
+                if (!archivo.getName().toLowerCase().endsWith(".png")) {
+                    archivo = new File(archivo.getAbsolutePath() + ".png");
+                }
+            }
+
+            try {
+                drawPanel.guardarComoImagen(archivo);
+                JOptionPane.showMessageDialog(this,
+                        "Imagen guardada exitosamente en:\n" + archivo.getAbsolutePath(),
+                        "Guardado exitoso",
+                        JOptionPane.INFORMATION_MESSAGE);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this,
+                        "Error al guardar la imagen:\n" + ex.getMessage(),
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                ex.printStackTrace();
+            }
+        }
+    }
+    
+    
+    
+    
+    
     private void ShapesSeleccionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ShapesSeleccionMouseClicked
         valores_Default();
         popMenuSahpe.show(ShapesSeleccion, evt.getX(), evt.getY());
@@ -692,9 +792,52 @@ public class paint extends javax.swing.JPanel {
     }//GEN-LAST:event_DesagruparOPActionPerformed
 
     private void RellenoOPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RellenoOPActionPerformed
-        mensaje.RellenoAlert();
+        mensaje.RellenoAlert(drawPanel);
     }//GEN-LAST:event_RellenoOPActionPerformed
 
+    private void TrazoOPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TrazoOPActionPerformed
+        mensaje.ContornoAlert(drawPanel);
+    }//GEN-LAST:event_TrazoOPActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        guardarImagen(evt);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        drawPanel.resetZoom();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+       try {
+                if (jComboBox1.getSelectedIndex() == 0) {
+                    UIManager.setLookAndFeel(new FlatMacLightLaf());
+                } else {
+                    UIManager.setLookAndFeel(new FlatMacDarkLaf());
+                }
+
+                // Actualizar la UI
+                updateUIForAllComponents();
+
+                // Guardar preferencia
+                saveThemePreference(jComboBox1.getSelectedIndex());
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this,
+                        "Error al cambiar el tema: " + ex.getMessage(),
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    
+    private void saveThemePreference(int themeIndex) {
+        Preferences.userNodeForPackage(getClass()).putInt("themePreference", themeIndex);
+    }
+    private void updateUIForAllComponents() {
+        for (Window window : Window.getWindows()) {
+            SwingUtilities.updateComponentTreeUI(window);
+        }
+    }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem AgruparOp;
@@ -738,11 +881,14 @@ public class paint extends javax.swing.JPanel {
     private javax.swing.JMenuItem TrazoOP;
     private javax.swing.JMenuItem TrianguloShape;
     private javax.swing.JPanel floatingPanel;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu popMenuConfiguracionSP;
     private javax.swing.JPopupMenu popMenuEslilo;
     private javax.swing.JPopupMenu popMenuOpcionSelecccion;

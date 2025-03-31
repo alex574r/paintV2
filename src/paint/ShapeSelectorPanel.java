@@ -173,7 +173,7 @@ public class ShapeSelectorPanel extends JPanel {
         chkSeleccionMultiple = new JCheckBox("Selección múltiple (Shift)");
         chkSeleccionMultiple.addActionListener(e -> {
             drawPanel.setSeleccionMultiple(chkSeleccionMultiple.isSelected());
-            //System.out.println(chkSeleccionMultiple.isSelected());
+            System.out.println(chkSeleccionMultiple.isSelected());
         });
 
         // Botón de mover

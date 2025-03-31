@@ -14,22 +14,45 @@ import paint.CustomDrawPanel;
  *
  * @author alex5
  */
-public class Relleno extends javax.swing.JDialog {
-
+public class OpcionesRelleno extends javax.swing.JDialog {
+    
     private CustomDrawPanel drawPanel;
     
-
-    public Relleno(java.awt.Frame parent, boolean modal,CustomDrawPanel drawPanel) {
-        
+    public OpcionesRelleno(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        this.drawPanel = drawPanel;
         initComponents();
-        this.setLocationRelativeTo(null);
-        OpcionrellenoImage.setVisible(false);
     }
-
-    Relleno(Object object, boolean b) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    
+    public OpcionesRelleno(CustomDrawPanel drawPanel) {
+        super((java.awt.Frame) null, true); // Cambiado para que sea modal
+        this.drawPanel = drawPanel;
+        initComponents(); // Inicializar componentes
+        
+        componentesDeIncio();
+        this.setLocationRelativeTo(null);
+    }
+    
+    public void componentesDeIncio() {
+        OpcionrellenoImage.setVisible(false);
+        
+        if (drawPanel != null) {
+            // Configuración inicial del checkbox de relleno
+            boolean opRelleno = drawPanel.isRelleno();
+            boolean opRellenoDegradado = drawPanel.getAtributosActuales().isRellenoDegradado();
+            
+            Opcionrelleno.setSelected(opRelleno);
+            Color color = drawPanel.getColorRelleno();
+            PrevisualizarColor.setBackground(color);
+            
+            OpcionRellenoDeg.setSelected(opRellenoDegradado);
+            Color colorInicio = drawPanel.getAtributosActuales().getColorDegradadoInicio();
+            Color colorFin = drawPanel.getAtributosActuales().getColorDegradadoFin();
+            PIncio.setBackground(colorInicio);
+            PFin.setBackground(colorFin);
+            
+        } else {
+            System.err.println("Advertencia: drawPanel es null en componentesDeIncio()");
+        }
     }
 
     /**
@@ -65,6 +88,7 @@ public class Relleno extends javax.swing.JDialog {
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        OpcionrellenoImage.setForeground(new java.awt.Color(0, 0, 0));
         OpcionrellenoImage.setText("Relleno de Imagen");
         OpcionrellenoImage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,6 +97,7 @@ public class Relleno extends javax.swing.JDialog {
         });
         jPanel1.add(OpcionrellenoImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 370, 160, -1));
 
+        OpcionRellenoDeg.setForeground(new java.awt.Color(0, 0, 0));
         OpcionRellenoDeg.setText("Relleno Con Degradado");
         OpcionRellenoDeg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,7 +106,7 @@ public class Relleno extends javax.swing.JDialog {
         });
         jPanel1.add(OpcionRellenoDeg, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 170, -1));
 
-        Opcionrelleno.setSelected(true);
+        Opcionrelleno.setForeground(new java.awt.Color(0, 0, 0));
         Opcionrelleno.setText("Relleno");
         Opcionrelleno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -200,16 +225,6 @@ public class Relleno extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void OpcionrellenoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpcionrellenoActionPerformed
-        drawPanel.setRelleno(Opcionrelleno.isSelected());
-        drawPanel.repaint();
-    }//GEN-LAST:event_OpcionrellenoActionPerformed
-
-    private void OpcionRellenoDegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpcionRellenoDegActionPerformed
-        drawPanel.getAtributosActuales().setRellenoDegradado(OpcionRellenoDeg.isSelected());
-        drawPanel.repaint();
-    }//GEN-LAST:event_OpcionRellenoDegActionPerformed
-
     private void OpcionrellenoImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpcionrellenoImageActionPerformed
         boolean activado = OpcionrellenoImage.isSelected();
         if (OpcionrellenoImage.isSelected()) {
@@ -217,8 +232,18 @@ public class Relleno extends javax.swing.JDialog {
             drawPanel.getAtributosActuales().setRellenoImagenActivo(activado);
             drawPanel.repaint();
         }
-       
+
     }//GEN-LAST:event_OpcionrellenoImageActionPerformed
+
+    private void OpcionRellenoDegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpcionRellenoDegActionPerformed
+        drawPanel.getAtributosActuales().setRellenoDegradado(OpcionRellenoDeg.isSelected());
+        drawPanel.repaint();
+    }//GEN-LAST:event_OpcionRellenoDegActionPerformed
+
+    private void OpcionrellenoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpcionrellenoActionPerformed
+        drawPanel.setRelleno(Opcionrelleno.isSelected());
+        drawPanel.repaint();
+    }//GEN-LAST:event_OpcionrellenoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Color color = JColorChooser.showDialog(this, "Color de Relleno", Color.WHITE);
@@ -253,16 +278,16 @@ public class Relleno extends javax.swing.JDialog {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         JFileChooser fileChooser = new JFileChooser();
-            fileChooser.setFileFilter(new FileNameExtensionFilter("Imágenes", "jpg", "png", "jpeg"));
-            if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-                drawPanel.cargarImagenRelleno(fileChooser.getSelectedFile());
-                OpcionrellenoImage.setVisible(true);
-                //sliderEscalaImagen.setEnabled(true);
-            }
+        fileChooser.setFileFilter(new FileNameExtensionFilter("Imágenes", "jpg", "png", "jpeg"));
+        if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            drawPanel.cargarImagenRelleno(fileChooser.getSelectedFile());
+            OpcionrellenoImage.setVisible(true);
+            //sliderEscalaImagen.setEnabled(true);
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-       dispose();
+        dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
@@ -282,17 +307,29 @@ public class Relleno extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Relleno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OpcionesRelleno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Relleno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OpcionesRelleno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Relleno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OpcionesRelleno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Relleno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OpcionesRelleno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
-        
+        /* Create and display the dialog */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                OpcionesRelleno dialog = new OpcionesRelleno(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

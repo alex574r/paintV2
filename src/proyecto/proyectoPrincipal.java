@@ -19,6 +19,9 @@ import subProyectos.Ex3EllipsesSlider;
 import subProyectos.Hello2D;
 import subProyectos.Hello2DV2;
 import paneles.PaintFlow;
+import subProyectos.RandomEllipses;
+import subProyectos.ShapeClasses;
+import subProyectos.TestColors;
 
 /**
  *
@@ -32,6 +35,9 @@ public class proyectoPrincipal extends javax.swing.JFrame {
     JPanel Ex3EllipsesSliderP = new Ex3EllipsesSlider();
     JPanel creditosP = new creditos();
     JPanel paintP = new paint();
+    JPanel ShapeC = new ShapeClasses();
+    JPanel randomElip = new RandomEllipses();
+    JPanel PColores = new TestColors();
     CustomDrawPanel drawPanel = new CustomDrawPanel();
     ShapeSelectorPanel PanelPaint = new ShapeSelectorPanel(drawPanel);
     prueba prueba = new prueba();
@@ -57,6 +63,9 @@ public class proyectoPrincipal extends javax.swing.JFrame {
         Hello2D = new javax.swing.JMenuItem();
         paintFlow = new javax.swing.JMenuItem();
         Elipses = new javax.swing.JMenuItem();
+        RandomElipse = new javax.swing.JMenuItem();
+        ShapeClas = new javax.swing.JMenuItem();
+        TestColor = new javax.swing.JMenuItem();
         Paint = new javax.swing.JMenuItem();
         paintPrueba = new javax.swing.JMenuItem();
         creditos = new javax.swing.JMenu();
@@ -101,6 +110,30 @@ public class proyectoPrincipal extends javax.swing.JFrame {
         });
         MenuSelectorProyectos.add(Elipses);
 
+        RandomElipse.setText("Random Elipses");
+        RandomElipse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RandomElipseActionPerformed(evt);
+            }
+        });
+        MenuSelectorProyectos.add(RandomElipse);
+
+        ShapeClas.setText("Shapes Class");
+        ShapeClas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ShapeClasActionPerformed(evt);
+            }
+        });
+        MenuSelectorProyectos.add(ShapeClas);
+
+        TestColor.setText("Prueba de Color");
+        TestColor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TestColorActionPerformed(evt);
+            }
+        });
+        MenuSelectorProyectos.add(TestColor);
+
         Paint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/paintApp/painticon.png"))); // NOI18N
         Paint.setText("Paint");
         Paint.setToolTipText("");
@@ -111,7 +144,6 @@ public class proyectoPrincipal extends javax.swing.JFrame {
         });
         MenuSelectorProyectos.add(Paint);
 
-        paintPrueba.setText("jMenuItem1");
         paintPrueba.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 paintPruebaActionPerformed(evt);
@@ -194,7 +226,7 @@ public class proyectoPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_PaintActionPerformed
 
     private void paintPruebaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paintPruebaActionPerformed
-        setTitle("Paint");
+        /*setTitle("Paint");
         scrollPrincipal.setViewportView(PanelPaint);
         PanelPaint.revalidate();
         PanelPaint.repaint();
@@ -248,6 +280,27 @@ public class proyectoPrincipal extends javax.swing.JFrame {
                 + "Aplicar Texturas - Desde el menú o interfaz");
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void RandomElipseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RandomElipseActionPerformed
+        setTitle("Elipses Aleatorias");
+        scrollPrincipal.setViewportView(randomElip);
+        randomElip.revalidate();
+        randomElip.repaint();
+    }//GEN-LAST:event_RandomElipseActionPerformed
+
+    private void ShapeClasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShapeClasActionPerformed
+        setTitle("Sahpes en Clase");
+        scrollPrincipal.setViewportView(ShapeC);
+        ShapeC.revalidate();
+        ShapeC.repaint();
+    }//GEN-LAST:event_ShapeClasActionPerformed
+
+    private void TestColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TestColorActionPerformed
+        setTitle("Colores RGB");
+        scrollPrincipal.setViewportView(PColores);
+        PColores.revalidate();
+        PColores.repaint();
+    }//GEN-LAST:event_TestColorActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -295,6 +348,9 @@ public class proyectoPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem HelloJava2D;
     private javax.swing.JMenu MenuSelectorProyectos;
     private javax.swing.JMenuItem Paint;
+    private javax.swing.JMenuItem RandomElipse;
+    private javax.swing.JMenuItem ShapeClas;
+    private javax.swing.JMenuItem TestColor;
     private javax.swing.JMenuItem acercaDeOp;
     private javax.swing.JMenu creditos;
     private javax.swing.JMenuItem jMenuItem1;
