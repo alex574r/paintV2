@@ -233,7 +233,7 @@ public class proyectoPrincipal extends javax.swing.JFrame {
         paintP.revalidate();
         paintP.repaint();
 
-        /*setTitle("Paint");
+        /*setTitle("aa");
         scrollPrincipal.setViewportView(PanelPaint);
         PanelPaint.revalidate();
         PanelPaint.repaint();*/

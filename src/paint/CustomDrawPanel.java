@@ -206,8 +206,6 @@ public class CustomDrawPanel extends JPanel {
             this.rellenoDegradado = rellenoDegradado;
         }
 
-       
-
         // Getter correcto para color inicial
         public Color getColorDegradadoInicio() {
             return this.colorDegradadoInicio;
@@ -1680,6 +1678,15 @@ public class CustomDrawPanel extends JPanel {
         repaint();
     }
 
+    public Color getColorContorno() {
+        if (!figurasSeleccionadas.isEmpty()) {
+            // Devuelve el color de contorno de la primera figura seleccionada
+            return figurasSeleccionadas.get(0).atributos.getColorContorno();
+        }
+        // Si no hay figuras seleccionadas, devuelve el color de los atributos actuales
+        return atributosActuales.getColorContorno();
+    }
+
     public void setRelleno(boolean activo) {
         atributosActuales.setRellenoActivo(activo);
         for (ShapeAtributos sa : figurasSeleccionadas) {
@@ -1704,6 +1711,16 @@ public class CustomDrawPanel extends JPanel {
         }
         repaint();
     }
+
+    public boolean isContornoActivo() {
+        if (!figurasSeleccionadas.isEmpty()) {
+            // Devuelve el estado del contorno de la primera figura seleccionada
+            return figurasSeleccionadas.get(0).atributos.isContornoActivo();
+        }
+        // Si no hay figuras seleccionadas, devuelve el estado de los atributos actuales
+        return atributosActuales.isContornoActivo();
+    }
+
     public void setPatronPunteado(float[] patron) {
         atributosActuales.setPatronPunteado(patron);
         atributosActuales.setStrokePunteado(true);

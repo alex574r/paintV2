@@ -5,6 +5,7 @@
 package OpcionesEmergentes;
 
 import java.awt.Color;
+import javax.swing.JColorChooser;
 import paint.CustomDrawPanel;
 
 /**
@@ -45,6 +46,14 @@ public class OpcionesTrazo extends javax.swing.JDialog {
             } else {
                 SliderPunteado.setEnabled(false);
             }
+            Color colorContorno = drawPanel.getColorContorno();
+            if (drawPanel.isContornoActivo()) {
+                jCheckBox1.setSelected(true);
+                jPanel2.setBackground(colorContorno);
+            }else{
+                jCheckBox1.setSelected(false);
+                jPanel2.setBackground(colorContorno);
+            }
 
         } else {
             System.err.println("Advertencia: drawPanel es null en componentesDeIncio()");
@@ -68,6 +77,9 @@ public class OpcionesTrazo extends javax.swing.JDialog {
         lblPunteado = new javax.swing.JLabel();
         checkContorno = new javax.swing.JCheckBox();
         jButton1 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
+        jCheckBox1 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -98,12 +110,12 @@ public class OpcionesTrazo extends javax.swing.JDialog {
                 SliderAnchoContornoStateChanged(evt);
             }
         });
-        jPanel1.add(SliderAnchoContorno, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 330, -1));
+        jPanel1.add(SliderAnchoContorno, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 330, -1));
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Estilo del Trazo");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
 
         checkContornoPunteado.setForeground(new java.awt.Color(0, 0, 0));
         checkContornoPunteado.setText("Estilo con Punteo");
@@ -112,7 +124,7 @@ public class OpcionesTrazo extends javax.swing.JDialog {
                 checkContornoPunteadoActionPerformed(evt);
             }
         });
-        jPanel1.add(checkContornoPunteado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 160, -1));
+        jPanel1.add(checkContornoPunteado, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 160, -1));
 
         SliderPunteado.setForeground(new java.awt.Color(0, 0, 0));
         SliderPunteado.setMajorTickSpacing(2);
@@ -128,11 +140,11 @@ public class OpcionesTrazo extends javax.swing.JDialog {
                 SliderPunteadoStateChanged(evt);
             }
         });
-        jPanel1.add(SliderPunteado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 330, 50));
+        jPanel1.add(SliderPunteado, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 330, 50));
 
         lblPunteado.setForeground(new java.awt.Color(0, 0, 0));
         lblPunteado.setText("Punteado: 5px");
-        jPanel1.add(lblPunteado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 150, 20));
+        jPanel1.add(lblPunteado, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, 150, 20));
 
         checkContorno.setForeground(new java.awt.Color(0, 0, 0));
         checkContorno.setText("Contorno");
@@ -141,7 +153,7 @@ public class OpcionesTrazo extends javax.swing.JDialog {
                 checkContornoActionPerformed(evt);
             }
         });
-        jPanel1.add(checkContorno, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 110, -1));
+        jPanel1.add(checkContorno, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 110, -1));
 
         jButton1.setText("Aceptar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -149,7 +161,25 @@ public class OpcionesTrazo extends javax.swing.JDialog {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 380, 290, 50));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 510, 290, 50));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, 40, 40));
+
+        jButton2.setText("Elegir Color");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, 120, -1));
+
+        jCheckBox1.setForeground(new java.awt.Color(0, 0, 0));
+        jCheckBox1.setText("Color de Contorno");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 610));
 
@@ -179,14 +209,27 @@ public class OpcionesTrazo extends javax.swing.JDialog {
 
     private void checkContornoPunteadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkContornoPunteadoActionPerformed
         boolean activado = checkContornoPunteado.isSelected();
-            drawPanel.getAtributosActuales().setStrokePunteado(activado);
-            SliderPunteado.setEnabled(activado);
-            drawPanel.repaint();
+        drawPanel.getAtributosActuales().setStrokePunteado(activado);
+        SliderPunteado.setEnabled(activado);
+        drawPanel.repaint();
     }//GEN-LAST:event_checkContornoPunteadoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Color color = JColorChooser.showDialog(this, "Color de Contorno", Color.BLACK);
+        if (color != null) {
+            jPanel2.setBackground(color);
+            drawPanel.setColorContorno(color);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        drawPanel.setContorno(jCheckBox1.isSelected());
+        drawPanel.repaint();
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -236,8 +279,11 @@ public class OpcionesTrazo extends javax.swing.JDialog {
     private javax.swing.JCheckBox checkContorno;
     private javax.swing.JCheckBox checkContornoPunteado;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblPunteado;
     // End of variables declaration//GEN-END:variables
 }
