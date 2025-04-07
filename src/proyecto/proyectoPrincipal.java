@@ -19,6 +19,8 @@ import subProyectos.Ex3EllipsesSlider;
 import subProyectos.Hello2D;
 import subProyectos.Hello2DV2;
 import paneles.PaintFlow;
+import subProyectos.ElipsesAleatoriasControlable;
+import subProyectos.Espirografo;
 import subProyectos.RandomEllipses;
 import subProyectos.ShapeClasses;
 import subProyectos.TestColors;
@@ -38,6 +40,8 @@ public class proyectoPrincipal extends javax.swing.JFrame {
     JPanel ShapeC = new ShapeClasses();
     JPanel randomElip = new RandomEllipses();
     JPanel PColores = new TestColors();
+    JPanel PEllipsesR = new ElipsesAleatoriasControlable();
+    JPanel PEspirografo = new Espirografo();
     CustomDrawPanel drawPanel = new CustomDrawPanel();
     ShapeSelectorPanel PanelPaint = new ShapeSelectorPanel(drawPanel);
     prueba prueba = new prueba();
@@ -66,8 +70,9 @@ public class proyectoPrincipal extends javax.swing.JFrame {
         RandomElipse = new javax.swing.JMenuItem();
         ShapeClas = new javax.swing.JMenuItem();
         TestColor = new javax.swing.JMenuItem();
+        ElipsesRandomSlider = new javax.swing.JMenuItem();
+        Espirografo = new javax.swing.JMenuItem();
         Paint = new javax.swing.JMenuItem();
-        paintPrueba = new javax.swing.JMenuItem();
         creditos = new javax.swing.JMenu();
         acercaDeOp = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -94,7 +99,7 @@ public class proyectoPrincipal extends javax.swing.JFrame {
         });
         MenuSelectorProyectos.add(Hello2D);
 
-        paintFlow.setText("Paint Flow");
+        paintFlow.setText("Paint ");
         paintFlow.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 paintFlowActionPerformed(evt);
@@ -134,6 +139,22 @@ public class proyectoPrincipal extends javax.swing.JFrame {
         });
         MenuSelectorProyectos.add(TestColor);
 
+        ElipsesRandomSlider.setText("Elipses Ramdom Slider");
+        ElipsesRandomSlider.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ElipsesRandomSliderActionPerformed(evt);
+            }
+        });
+        MenuSelectorProyectos.add(ElipsesRandomSlider);
+
+        Espirografo.setText("Espirografo");
+        Espirografo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EspirografoActionPerformed(evt);
+            }
+        });
+        MenuSelectorProyectos.add(Espirografo);
+
         Paint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/paintApp/painticon.png"))); // NOI18N
         Paint.setText("Paint");
         Paint.setToolTipText("");
@@ -143,13 +164,6 @@ public class proyectoPrincipal extends javax.swing.JFrame {
             }
         });
         MenuSelectorProyectos.add(Paint);
-
-        paintPrueba.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                paintPruebaActionPerformed(evt);
-            }
-        });
-        MenuSelectorProyectos.add(paintPrueba);
 
         BarProyectos.add(MenuSelectorProyectos);
 
@@ -225,16 +239,16 @@ public class proyectoPrincipal extends javax.swing.JFrame {
         PanelPaint.repaint();*/
     }//GEN-LAST:event_PaintActionPerformed
 
-    private void paintPruebaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paintPruebaActionPerformed
-        /*setTitle("Paint");
-        scrollPrincipal.setViewportView(PanelPaint);
-        PanelPaint.revalidate();
-        PanelPaint.repaint();
+    private void ElipsesRandomSliderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ElipsesRandomSliderActionPerformed
+        setTitle("Elipses random con Slider");
+        scrollPrincipal.setViewportView(PEllipsesR);
+        PEllipsesR.revalidate();
+        PEllipsesR.repaint();
         /*setTitle("Paint V2");
         scrollPrincipal.setViewportView(paintP);
         paintP.revalidate();
         paintP.repaint();*/
-    }//GEN-LAST:event_paintPruebaActionPerformed
+    }//GEN-LAST:event_ElipsesRandomSliderActionPerformed
 
     private void acercaDeOpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acercaDeOpActionPerformed
         setTitle("Acerca De");
@@ -301,6 +315,13 @@ public class proyectoPrincipal extends javax.swing.JFrame {
         PColores.repaint();
     }//GEN-LAST:event_TestColorActionPerformed
 
+    private void EspirografoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EspirografoActionPerformed
+        setTitle("Espirografo");
+        scrollPrincipal.setViewportView(PEspirografo);
+        PEspirografo.revalidate();
+        PEspirografo.repaint();
+    }//GEN-LAST:event_EspirografoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -344,6 +365,8 @@ public class proyectoPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar BarProyectos;
     private javax.swing.JMenuItem Elipses;
+    private javax.swing.JMenuItem ElipsesRandomSlider;
+    private javax.swing.JMenuItem Espirografo;
     private javax.swing.JMenuItem Hello2D;
     private javax.swing.JMenuItem HelloJava2D;
     private javax.swing.JMenu MenuSelectorProyectos;
@@ -355,7 +378,6 @@ public class proyectoPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu creditos;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem paintFlow;
-    private javax.swing.JMenuItem paintPrueba;
     private javax.swing.JScrollPane scrollPrincipal;
     // End of variables declaration//GEN-END:variables
 }

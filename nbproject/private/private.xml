@@ -5,10 +5,10 @@
         <group>
             <file>file:/D:/alex5/Desktop/paintV2/src/proyecto/principal.java</file>
             <file>file:/D:/alex5/Desktop/paintV2/src/proyecto/proyectoPrincipal.java</file>
-            <file>file:/D:/alex5/Desktop/paintV2/src/paint/ShapeSelectorPanel.java</file>
-            <file>file:/D:/alex5/Desktop/paintV2/src/paint/prueba.java</file>
+            <file>file:/D:/alex5/Desktop/paintV2/src/subProyectos/RandomEllipses.java</file>
             <file>file:/D:/alex5/Desktop/paintV2/src/paint/AtributosDibujo.java</file>
-            <file>file:/D:/alex5/Desktop/paintV2/src/paint/CustomDrawPanel.java</file>
+            <file>file:/D:/alex5/Desktop/paintV2/src/subProyectos/ShapeClasses.java</file>
+            <file>file:/D:/alex5/Desktop/paintV2/src/subProyectos/TestColors.java</file>
         </group>
     </open-files>
 </project-private>
